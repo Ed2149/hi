@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMBWAGA INSURANCE AGENCY - No Sublimits, Complete Coverage</title>
+    <title>IMBWAGA Insurance Agency - No Sublimits, Complete Coverage</title>
     <style>
         :root {
             --primary-blue: #1e3a8a;
@@ -223,44 +223,21 @@
             border-color: var(--primary-blue);
         }
 
-        /* Lead Capture Elements */
-        .newsletter-section {
-            background: var(--gradient);
+        .btn {
+            background: var(--accent-gold);
             color: white;
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .newsletter-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 12px;
+            padding: 12px 30px;
             border: none;
             border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
         }
 
-        .exit-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            z-index: 2000;
-            text-align: center;
-        }
-
-        .exit-popup.active {
-            display: block;
+        .btn:hover {
+            background: #b45309;
         }
 
         /* Footer */
@@ -281,7 +258,6 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .about-content, .contact-grid { grid-template-columns: 1fr; }
-            .newsletter-form { flex-direction: column; }
             nav ul { display: none; }
             .mobile-menu { display: block; }
         }
@@ -291,13 +267,35 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
+
+        .form-message {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .form-message.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+            display: block;
+        }
+
+        .form-message.error {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+            display: block;
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <div class="logo">IMBWAGA INSURANCE AGENCY</div>
+            <div class="logo">IMBWAGA INSURANCE</div>
             <div class="mobile-menu">☰</div>
             <nav>
                 <ul>
@@ -307,7 +305,7 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <a href="#contact" class="header-cta">Get Quote</a>
+            <a href="#contact" class="header-cta">Contact Us</a>
         </div>
     </header>
 
@@ -334,7 +332,6 @@
                     <p><strong>Coverage Details:</strong> Full inpatient and outpatient coverage with no sublimits</p>
                     <p><strong>Policy Features:</strong> Room charges, surgery, medication, specialist consultations</p>
                     <p><strong>Exclusions:</strong> Pre-existing conditions (subject to waiting period)</p>
-                    <a href="#contact" class="header-cta" style="display: inline-block; margin-top: 1rem;">Get Quote</a>
                 </div>
 
                 <div class="service-card">
@@ -343,7 +340,6 @@
                     <p><strong>Coverage Details:</strong> Comprehensive travel protection worldwide</p>
                     <p><strong>Policy Features:</strong> Medical emergency, trip cancellation, lost luggage</p>
                     <p><strong>Exclusions:</strong> Extreme sports, war zones</p>
-                    <a href="#contact" class="header-cta" style="display: inline-block; margin-top: 1rem;">Get Quote</a>
                 </div>
 
                 <div class="service-card">
@@ -352,7 +348,6 @@
                     <p><strong>Coverage Details:</strong> Complete property and liability protection</p>
                     <p><strong>Policy Features:</strong> Fire, burglary, natural disasters, personal liability</p>
                     <p><strong>Exclusions:</strong> Wear and tear, intentional damage</p>
-                    <a href="#contact" class="header-cta" style="display: inline-block; margin-top: 1rem;">Get Quote</a>
                 </div>
 
                 <div class="service-card">
@@ -361,7 +356,6 @@
                     <p><strong>Coverage Details:</strong> Cargo and vessel protection</p>
                     <p><strong>Policy Features:</strong> Transit risks, piracy, weather damage</p>
                     <p><strong>Exclusions:</strong> Improper packaging</p>
-                    <a href="#contact" class="header-cta" style="display: inline-block; margin-top: 1rem;">Get Quote</a>
                 </div>
             </div>
         </div>
@@ -371,7 +365,7 @@
     <section id="about" class="about">
         <div class="container">
             <div class="section-title">
-                <h2>About IMBWAGA Insurance Agency</h2>
+                <h2>About IMBWAGA Insurance</h2>
             </div>
             <div class="about-content">
                 <div>
@@ -397,8 +391,8 @@
                     
                     <h3>Operating Hours</h3>
                     <ul>
-                        <li>Monday - Friday: 10:00 AM - 19:00 PM</li>
-                        <li>Saturday: Closed</li>
+                        <li>Monday - Friday: 8:00 AM - 5:00 PM</li>
+                        <li>Saturday: 9:00 AM - 1:00 PM</li>
                         <li>Sunday: Closed</li>
                         <li>Emergency Claims: 24/7</li>
                     </ul>
@@ -442,21 +436,39 @@
                     
                     <h3 style="margin-top: 2rem;">Schedule Appointment</h3>
                     <form id="appointmentForm">
+                        <div id="appointmentMessage"></div>
                         <div class="form-group">
-                            <label for="appointmentDate">Preferred Date</label>
-                            <input type="date" id="appointmentDate" required>
+                            <label for="appointmentName">Your Name *</label>
+                            <input type="text" id="appointmentName" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="appointmentTime">Preferred Time</label>
-                            <input type="time" id="appointmentTime" required>
+                            <label for="appointmentEmail">Your Email *</label>
+                            <input type="email" id="appointmentEmail" name="email" required>
                         </div>
-                        <button type="submit" class="header-cta" style="width: 100%;">Schedule Meeting</button>
+                        <div class="form-group">
+                            <label for="appointmentPhone">Your Phone *</label>
+                            <input type="tel" id="appointmentPhone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentDate">Preferred Date *</label>
+                            <input type="date" id="appointmentDate" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentTime">Preferred Time *</label>
+                            <input type="time" id="appointmentTime" name="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentNotes">Additional Notes</label>
+                            <textarea id="appointmentNotes" name="notes" placeholder="Any specific topics you'd like to discuss..."></textarea>
+                        </div>
+                        <button type="submit" class="btn">Schedule Appointment</button>
                     </form>
                 </div>
                 
                 <div class="contact-form">
                     <h3>Request a Quote</h3>
                     <form id="quoteForm">
+                        <div id="quoteMessage"></div>
                         <div class="form-group">
                             <label for="name">Full Name *</label>
                             <input type="text" id="name" name="name" required>
@@ -483,47 +495,26 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="message">Additional Information</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your specific needs..."></textarea>
+                            <label for="coverageAmount">Desired Coverage Amount (KES)</label>
+                            <input type="number" id="coverageAmount" name="coverage_amount" placeholder="e.g., 1000000">
                         </div>
-                        <button type="submit" class="header-cta" style="width: 100%;">Get Your Quote</button>
+                        <div class="form-group">
+                            <label for="message">Additional Information *</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your specific insurance needs..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Get Your Quote</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter-section">
-        <div class="container">
-            <h2>Stay Informed About Insurance</h2>
-            <p>Get tips, updates, and exclusive offers delivered to your inbox</p>
-            <form class="newsletter-form" id="newsletterForm">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit" class="header-cta">Subscribe</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Exit Intent Popup -->
-    <div class="exit-popup" id="exitPopup">
-        <h3>Wait! Get Your Free Insurance Guide</h3>
-        <p>Download our comprehensive insurance checklist before you go.</p>
-        <form id="exitForm">
-            <div class="form-group">
-                <input type="email" placeholder="Your email" required>
-            </div>
-            <button type="submit" class="header-cta">Download Guide</button>
-        </form>
-        <button onclick="closePopup()" style="margin-top: 1rem; background: none; border: none; color: var(--medium-gray); cursor: pointer;">No thanks</button>
-    </div>
-
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div>
-                    <h3>IMBWAGA INSURANCE AGENCY</h3>
+                    <h3>IMBWAGA INSURANCE</h3>
                     <p>Your trusted partner for comprehensive insurance solutions with no sublimits.</p>
                 </div>
                 <div>
@@ -537,65 +528,106 @@
                 </div>
                 <div>
                     <h3>Contact Info</h3>
-                      <div class="contact-icon">📞</div>
-                        <div>
-                            <strong>Phone</strong><br>
-                            <a href="tel:0706083148" style="color: var(--primary-white); text-decoration: none;">0706083148</a>
-                        </div>
- <div class="contact-icon">✉️</div>
-                        <div>
-                            <strong>Email</strong><br>
-                            <a href="mailto:KIMBWAGA@INSURANCEAGENCY.CO.KE" style="color: var(--primary-white); text-decoration: none;">KIMBWAGA@INSURANCEAGENCY.CO.KE</a>
-                        </div>                    <p>📍 Upperhill, Hospital Road Real Towers, 7th Floor</p>
+                    <p>📞 0706083148</p>
+                    <p>✉️ KIMBWAGA@INSURANCEAGENCY.CO.KE</p>
+                    <p>📍 Real Towers, 7th Floor</p>
                 </div>
             </div>
             <div style="text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-                <p>&copy;  IMBWAGA Insurance Agency. All rights reserved.</p>
+                <p>&copy; 2024 IMBWAGA Insurance Agency. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Form Handling
+        // Form Handling with Email Functionality
         document.getElementById('quoteForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your quote request! We will contact you within 24 hours.');
-            this.reset();
+            
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                service: formData.get('service'),
+                coverage_amount: formData.get('coverage_amount'),
+                message: formData.get('message'),
+                type: 'quote_request'
+            };
+
+            // Send email (using Formspree or similar service)
+            sendEmail(data, 'quoteMessage');
         });
 
         document.getElementById('appointmentForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Appointment scheduled! We will confirm via email.');
-            this.reset();
+            
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                date: formData.get('date'),
+                time: formData.get('time'),
+                notes: formData.get('notes'),
+                type: 'appointment_request'
+            };
+
+            // Send email
+            sendEmail(data, 'appointmentMessage');
         });
 
-        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for subscribing to our newsletter!');
-            this.reset();
-        });
-
-        // Exit Intent Popup
-        let mouseY = 0;
-        document.addEventListener('mousemove', function(e) {
-            mouseY = e.clientY;
-        });
-
-        document.addEventListener('mouseleave', function(e) {
-            if (e.clientY - mouseY <= 0 && e.clientY < 50) {
-                document.getElementById('exitPopup').classList.add('active');
+        function sendEmail(data, messageElementId) {
+            // For production, replace this with actual email service integration
+            // Using Formspree as an example - you'll need to create a free account at formspree.io
+            
+            const formData = new FormData();
+            formData.append('_subject', `New ${data.type} from IMBWAGA Website`);
+            formData.append('name', data.name);
+            formData.append('email', data.email);
+            formData.append('phone', data.phone || 'N/A');
+            
+            if (data.type === 'quote_request') {
+                formData.append('service', data.service);
+                formData.append('coverage_amount', data.coverage_amount || 'Not specified');
+                formData.append('message', data.message);
+            } else {
+                formData.append('appointment_date', data.date);
+                formData.append('appointment_time', data.time);
+                formData.append('notes', data.notes || 'No additional notes');
             }
-        });
 
-        function closePopup() {
-            document.getElementById('exitPopup').classList.remove('active');
+            // Using Formspree - replace 'YOUR_FORMSPREE_ID' with your actual Formspree form ID
+            fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    showMessage(messageElementId, 'Thank you! We will contact you shortly.', 'success');
+                    document.getElementById(data.type === 'quote_request' ? 'quoteForm' : 'appointmentForm').reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                showMessage(messageElementId, 'There was an error sending your message. Please call us directly at 0706083148.', 'error');
+                console.error('Error:', error);
+            });
         }
 
-        document.getElementById('exitForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you! Your insurance guide has been sent to your email.');
-            closePopup();
-        });
+        function showMessage(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = `form-message ${type}`;
+            
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
 
         // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -613,8 +645,8 @@
 
         // Mobile Menu
         document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').style.display = 
-                document.querySelector('nav ul').style.display === 'flex' ? 'none' : 'flex';
+            const nav = document.querySelector('nav ul');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
         });
     </script>
 </body>
