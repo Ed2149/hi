@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMBWAGA INSURANCE AGENCY - No Sublimits, Complete Coverage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #1e3a8a;
-            --dark-blue: #1e40af;
-            --light-blue: #dbeafe;
-            --accent-gold: #d97706;
-            --accent-green: #059669;
-            --dark-gray: #1f2937;
-            --medium-gray: #6b7280;
-            --light-gray: #f8fafc;
+            --primary-blue: #0D3B66;
+            --dark-blue: #1A4D7F;
+            --light-blue: #E6F0FA;
+            --accent-blue: #3B82F6;
+            --dark-gray: #374151;
+            --medium-gray: #6B7280;
+            --light-gray: #F8FAFC;
             --white: #ffffff;
             --shadow: 0 10px 25px rgba(0,0,0,0.1);
-            --gradient: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            --shadow-hover: 0 15px 35px rgba(0,0,0,0.15);
+            --gradient: linear-gradient(135deg, #0D3B66 0%, #1A4D7F 100%);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -30,6 +32,7 @@
             line-height: 1.6;
             color: var(--dark-gray);
             background: var(--white);
+            overflow-x: hidden;
         }
 
         .container {
@@ -40,12 +43,14 @@
 
         /* Header & Navigation */
         header {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.95);
             box-shadow: var(--shadow);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
 
         .header-container {
@@ -55,7 +60,35 @@
             padding: 1rem 0;
         }
 
-        .logo {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background: var(--light-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 5px;
+            transition: var(--transition);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .logo-placeholder:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .logo-text {
             font-size: 1.8rem;
             font-weight: 800;
             color: var(--primary-blue);
@@ -71,50 +104,103 @@
             text-decoration: none;
             color: var(--dark-gray);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: var(--transition);
         }
 
         nav ul li a:hover {
             color: var(--primary-blue);
         }
 
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
         .header-cta {
-            background: var(--accent-gold);
+            background: var(--accent-blue);
             color: white;
             padding: 8px 20px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: var(--transition);
         }
 
         .header-cta:hover {
-            background: #b45309;
+            background: #1D4ED8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .header-cta:hover::before {
+            left: 100%;
         }
 
         /* Hero Section */
         .hero {
-            background: var(--gradient);
+            background: 
+                linear-gradient(rgba(13, 59, 102, 0.85), rgba(26, 77, 127, 0.9)),
+                url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
             color: var(--white);
             padding: 150px 0 100px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
             font-weight: 800;
+            position: relative;
         }
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2.5rem;
             opacity: 0.9;
+            position: relative;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Services Grid */
         .services {
             padding: 100px 0;
+            background: 
+                linear-gradient(rgba(248, 250, 252, 0.9), rgba(248, 250, 252, 0.9)),
+                url('https://images.unsplash.com/photo-1551830893-bf691a61c9b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .section-title {
@@ -124,8 +210,22 @@
 
         .section-title h2 {
             font-size: 2.5rem;
-            color: var(--dark-blue);
+            color: var(--primary-blue);
             margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-blue);
+            border-radius: 2px;
         }
 
         .services-grid {
@@ -139,23 +239,209 @@
             padding: 2.5rem;
             border-radius: 15px;
             box-shadow: var(--shadow);
-            transition: transform 0.3s;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            cursor: pointer;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid var(--light-blue);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            color: var(--white);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover .service-icon,
+        .service-card:hover h3,
+        .service-card:hover p {
+            color: var(--white);
         }
 
         .service-icon {
             font-size: 3rem;
             margin-bottom: 1.5rem;
             display: block;
+            color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        /* Modal Popup Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-header h3 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h4 {
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .modal-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-blue);
+        }
+
+        .modal-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .modal-section li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .modal-section li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .modal-footer {
+            padding: 0 2rem 2rem;
+            text-align: center;
+        }
+
+        .modal-cta {
+            background: var(--accent-blue);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .modal-cta:hover {
+            background: #1D4ED8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
         }
 
         /* About Section */
         .about {
             padding: 80px 0;
-            background: var(--light-gray);
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                url('https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
         .about-content {
@@ -165,9 +451,108 @@
             align-items: center;
         }
 
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background: var(--light-blue);
+            transition: var(--transition);
+            border: 1px solid var(--light-blue);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: 
+                linear-gradient(rgba(248, 250, 252, 0.9), rgba(248, 250, 252, 0.9)),
+                url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--light-blue);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--light-blue);
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            line-height: 1;
+            z-index: 0;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--light-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
         /* Contact Section */
         .contact {
             padding: 100px 0;
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+                url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
         .contact-grid {
@@ -181,28 +566,49 @@
             padding: 2rem;
             border-radius: 15px;
             box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--light-blue);
+        }
+
+        .contact-info:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
 
         .contact-item {
             display: flex;
             align-items: flex-start;
             margin-bottom: 2rem;
+            transition: var(--transition);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .contact-item:hover {
+            background: var(--light-gray);
         }
 
         .contact-icon {
             color: var(--primary-blue);
             margin-right: 1rem;
             font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover .contact-icon {
+            transform: scale(1.2);
         }
 
         .form-group {
             margin-bottom: 1.5rem;
+            position: relative;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            transition: var(--transition);
         }
 
         .form-group input,
@@ -213,7 +619,8 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: var(--transition);
+            font-family: inherit;
         }
 
         .form-group input:focus,
@@ -221,10 +628,11 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(13, 59, 102, 0.1);
         }
 
         .btn {
-            background: var(--accent-gold);
+            background: var(--accent-blue);
             color: white;
             padding: 12px 30px;
             border: none;
@@ -232,12 +640,31 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: var(--transition);
             width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: var(--transition);
         }
 
         .btn:hover {
-            background: #b45309;
+            background: #1D4ED8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         /* Map Styles */
@@ -247,16 +674,12 @@
             overflow: hidden;
             margin-bottom: 2rem;
             border: 2px solid var(--light-blue);
+            transition: var(--transition);
         }
 
-        .map-placeholder {
-            height: 100%;
-            background: var(--light-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-blue);
-            font-weight: 600;
+        .map-container:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-hover);
         }
 
         /* Footer */
@@ -278,12 +701,24 @@
             align-items: flex-start;
             margin-bottom: 1rem;
             color: white;
+            transition: var(--transition);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .footer-contact-item:hover {
+            background: rgba(255,255,255,0.1);
         }
 
         .footer-contact-icon {
-            color: var(--accent-gold);
+            color: var(--accent-blue);
             margin-right: 1rem;
             font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .footer-contact-item:hover .footer-contact-icon {
+            transform: scale(1.2);
         }
 
         /* Form Messages */
@@ -309,18 +744,106 @@
             display: block;
         }
 
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #1D4ED8;
+            transform: translateY(-5px);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .about-content, .contact-grid { grid-template-columns: 1fr; }
             nav ul { display: none; }
             .mobile-menu { display: block; }
+            .logo-text { font-size: 1.5rem; }
+            .logo-placeholder { width: 50px; height: 50px; }
+            .modal-content { max-width: 95%; }
+            .modal-header { padding: 1.5rem; }
+            .modal-body { padding: 1.5rem; }
+            .services, .testimonials {
+                background-attachment: scroll;
+            }
         }
 
         .mobile-menu {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        .mobile-menu:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Highlighted Service Cards */
+        .highlighted-service {
+            border: 2px solid var(--accent-blue);
+            position: relative;
+        }
+
+        .highlighted-service::after {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: 15px;
+            right: -10px;
+            background: var(--accent-blue);
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            transform: rotate(5deg);
+        }
+
+        .price-tag {
+            background: var(--accent-blue);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -328,7 +851,12 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <div class="logo">IMBWAGA INSURANCE AGENCY</div>
+            <div class="logo-container">
+                <div class="logo-placeholder">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">IMBWAGA INSURANCE AGENCY</div>
+            </div>
             <div class="mobile-menu">☰</div>
             <nav>
                 <ul>
@@ -356,43 +884,54 @@
         <div class="container">
             <div class="section-title">
                 <h2>Our Insurance Solutions</h2>
-                <p>Comprehensive coverage tailored to your specific needs</p>
+                <p>Click on any insurance solution to see detailed information</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card fade-in highlighted-service" data-service="shwaari-medical">
                     <span class="service-icon">🏥</span>
-                    <h3>Medical Insurance</h3>
-                    <p><strong>Coverage Details:</strong> Full inpatient and outpatient coverage with no sublimits</p>
-                    <p><strong>Policy Features:</strong> Room charges, surgery, medication, specialist consultations</p>
-                    <p><strong>Exclusions:</strong> Pre-existing conditions (subject to waiting period)</p>
+                    <h3>Shwaari Medical Cover</h3>
+                    <p>Comprehensive health coverage with no sublimits for both inpatient and outpatient services.</p>
+                    <div class="price-tag">KES 18,356</div>
                 </div>
 
-                <div class="service-card">
-                    <span class="service-icon">✈️</span>
-                    <h3>Travel Insurance</h3>
-                    <p><strong>Coverage Details:</strong> Comprehensive travel protection worldwide</p>
-                    <p><strong>Policy Features:</strong> Medical emergency, trip cancellation, lost luggage</p>
-                    <p><strong>Exclusions:</strong> Extreme sports, war zones</p>
+                <div class="service-card fade-in" data-service="personal-accident">
+                    <span class="service-icon">🛡️</span>
+                    <h3>Personal Accident Cover</h3>
+                    <p>Very affordable and convenient accident protection for individuals and families.</p>
+                    <div class="price-tag">KES 643</div>
                 </div>
 
-                <div class="service-card">
-                    <span class="service-icon">🏠</span>
-                    <h3>Home Owners Insurance</h3>
-                    <p><strong>Coverage Details:</strong> Complete property and liability protection</p>
-                    <p><strong>Policy Features:</strong> Fire, burglary, natural disasters, personal liability</p>
-                    <p><strong>Exclusions:</strong> Wear and tear, intentional damage</p>
-                </div>
-
-                <div class="service-card">
-                    <span class="service-icon">🚢</span>
-                    <h3>Marine Insurance</h3>
-                    <p><strong>Coverage Details:</strong> Cargo and vessel protection</p>
-                    <p><strong>Policy Features:</strong> Transit risks, piracy, weather damage</p>
-                    <p><strong>Exclusions:</strong> Improper packaging</p>
-                </div>
+              
             </div>
         </div>
     </section>
+
+    <!-- Modal Popup -->
+    <div class="modal-overlay" id="serviceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle"><span id="modalIcon"></span> <span id="modalServiceName"></span></h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h4>Coverage Details</h4>
+                    <ul id="coverageDetails"></ul>
+                </div>
+                <div class="modal-section">
+                    <h4>Policy Features</h4>
+                    <ul id="policyFeatures"></ul>
+                </div>
+                <div class="modal-section">
+                    <h4>Exclusions</h4>
+                    <ul id="exclusions"></ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#contact" class="modal-cta" id="modalCta">Contact Us for More Information</a>
+            </div>
+        </div>
+    </div>
 
     <!-- About Section -->
     <section id="about" class="about">
@@ -401,7 +940,7 @@
                 <h2>About IMBWAGA Insurance Agency</h2>
             </div>
             <div class="about-content">
-                <div>
+                <div class="fade-in">
                     <h3>Our History</h3>
                     <p>Founded with a mission to provide transparent, comprehensive insurance coverage without hidden limitations. We've been serving clients across Kenya with reliable protection solutions.</p>
                     
@@ -415,8 +954,27 @@
                         <li>Innovative solutions</li>
                         <li>Reliable service</li>
                     </ul>
+
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number"></div>
+                            <div>Happy Clients</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number"></div>
+                            <div>Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number"></div>
+                            <div>Claim Approval</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div>Customer Support</div>
+                        </div>
+                    </div>
                 </div>
-                <div>
+                <div class="fade-in">
                     <h3>Office Location</h3>
                     <div class="map-container">
                         <iframe 
@@ -432,7 +990,7 @@
                     
                     <h3>Operating Hours</h3>
                     <ul>
-                        <li>Monday - Friday: 10:00  - 19:00 </li>
+                        <li>Monday - Friday: 10:00 - 19:00 </li>
                         <li>Saturday: Closed</li>
                         <li>Sunday: Closed</li>
                         <li>Emergency Claims: 24/7</li>
@@ -442,7 +1000,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+  <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-title">
@@ -450,30 +1008,8 @@
                 <p>Get in touch for quotes, claims, or questions</p>
             </div>
             <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div>
-                            <strong>Phone</strong><br>
-                            <a href="tel:0706083148" style="color: var(--primary-blue); text-decoration: none;">0706083148</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div>
-                            <strong>Email</strong><br>
-                            <a href="edwindurk5@gmail.com" style="color: var(--primary-blue); text-decoration: none;">edwindurk5@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <strong>Address</strong><br>
-                            Real Towers, 7th Floor<br>
-                            Hospital Road, Upperhill, Nairobi
-                        </div>
-                    </div>
+                <div class="contact-info fade-in">
+                   
                     
                     <h3 style="margin-top: 2rem;">Schedule Appointment</h3>
                     <form id="appointmentForm">
@@ -506,7 +1042,7 @@
                     </form>
                 </div>
                 
-                <div class="contact-form">
+                <div class="contact-form fade-in">
                     <h3>Request a Quote</h3>
                     <form id="quoteForm">
                         <div id="quoteMessage"></div>
@@ -526,13 +1062,9 @@
                             <label for="service">Service Interested In *</label>
                             <select id="service" name="service" required>
                                 <option value="">Select a service</option>
-                                <option value="medical">Medical Insurance</option>
-                                <option value="travel">Travel Insurance</option>
-                                <option value="home">Home Owners Insurance</option>
-                                <option value="marine">Marine Insurance</option>
-                                <option value="workers">Workers Injury Benefits</option>
-                                <option value="fire">Fire & Burglary Policy</option>
-                                <option value="accident">Personal Accident Covers</option>
+                                <option value="shwaari-medical">Shwaari Medical Cover (KES 18,356)</option>
+                                <option value="personal-accident">Personal Accident Cover (KES 643)</option>
+                               
                             </select>
                         </div>
                         <div class="form-group">
@@ -595,7 +1127,159 @@
         </div>
     </footer>
 
+   
+
     <script>
+        // Service data for the modal popups
+        const serviceData = {
+            "shwaari-medical": {
+                icon: "🏥",
+                name: "Shwaari Medical Cover",
+                coverage: [
+                    "Full inpatient and outpatient coverage with no sublimits - the best in the market",
+                    "Room charges, surgery, medication, specialist consultations",
+                    "Maternity and newborn care",
+                    "Dental and optical services",
+                    "Chronic disease management",
+                    "Emergency ambulance services",
+                    "Diagnostic tests and laboratory services"
+                ],
+                features: [
+                    "Direct billing with network hospitals",
+                    "Emergency evacuation and repatriation",
+                    "Wellness programs and health check-ups",
+                    "24/7 telemedicine services",
+                    "No hidden costs or sublimits",
+                    "Fast claims processing"
+                ],
+                exclusions: [
+                    "Pre-existing conditions (subject to waiting period)",
+                    "Cosmetic procedures",
+                    "Experimental treatments",
+                    "Dental implants and orthodontics (basic dental covered)"
+                ]
+            },
+            "personal-accident": {
+                icon: "🛡️",
+                name: "Personal Accident Cover",
+                coverage: [
+                    "Accidental death benefit",
+                    "Permanent total disability benefit",
+                    "Temporary total disability benefit",
+                    "Medical expenses due to accidents",
+                    "Funeral expenses benefit",
+                    "Weekly compensation during hospitalization"
+                ],
+                features: [
+                    "Very affordable at only KES 643",
+                    "24/7 worldwide coverage",
+                    "No medical examination required",
+                    "Quick and easy application process",
+                    "Flexible payment options"
+                ],
+                exclusions: [
+                    "Suicide or self-inflicted injuries",
+                    "Injuries from illegal activities",
+                    "Injuries under the influence of drugs/alcohol",
+                    "War and nuclear risks"
+                ]
+            },
+           
+          
+        };
+
+        // Modal functionality
+        const modal = document.getElementById('serviceModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalIcon = document.getElementById('modalIcon');
+        const modalServiceName = document.getElementById('modalServiceName');
+        const coverageDetails = document.getElementById('coverageDetails');
+        const policyFeatures = document.getElementById('policyFeatures');
+        const exclusions = document.getElementById('exclusions');
+        const modalCta = document.getElementById('modalCta');
+
+        // Open modal when service card is clicked
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const serviceType = this.getAttribute('data-service');
+                const service = serviceData[serviceType];
+                
+                if (service) {
+                    // Update modal content
+                    modalIcon.textContent = service.icon;
+                    modalServiceName.textContent = service.name;
+                    
+                    // Clear previous content
+                    coverageDetails.innerHTML = '';
+                    policyFeatures.innerHTML = '';
+                    exclusions.innerHTML = '';
+                    
+                    // Populate coverage details
+                    service.coverage.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = item;
+                        coverageDetails.appendChild(li);
+                    });
+                    
+                    // Populate policy features
+                    service.features.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = item;
+                        policyFeatures.appendChild(li);
+                    });
+                    
+                    // Populate exclusions
+                    service.exclusions.forEach(item => {
+                        const li = document.createElement('li');
+                        li.textContent = item;
+                        exclusions.appendChild(li);
+                    });
+                    
+                    // Update CTA text
+                    modalCta.textContent = `Contact Us for ${service.name}`;
+                    
+                    // Show modal
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Close modal when close button is clicked
+        modalClose.addEventListener('click', function() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close modal when clicking outside the modal content
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close modal when "Contact Us" button in modal is clicked and scroll to contact form
+        modalCta.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Scroll to contact section
+            document.getElementById('contact').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
         // Form Handling with Email Functionality
         document.getElementById('quoteForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -706,6 +1390,35 @@
         // Set minimum date for appointment to today
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('appointmentDate').min = today;
+
+        // Back to Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+
+        // Fade-in Animation on Scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = () => {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        // Initial check in case elements are already in view
+        fadeInOnScroll();
     </script>
 </body>
 </html>
